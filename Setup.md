@@ -50,3 +50,8 @@ This `tsconfig.spec.json` file
       "files": ["src/test-setup.ts"],
       "include": ["**/*.spec.ts", "**/*.d.ts"]
     }
+
+`test-setup.ts` file
+
+        import 'jest-preset-angular';
+Make sure that 3 above files have been created before run unit test
