@@ -10,6 +10,6 @@
 ## Contents
 ### [1. Set up](https://github.com/hoai97nam/angular_UT_document/blob/main/Setup.md)
 ### [2. Service](https://github.com/hoai97nam/angular_UT_document/blob/main/Service.md)
-### 3. Component
+### [3. Component](https://github.com/hoai97nam/angular_UT_document/blob/main/Service.md)
 ## Most use cases
 
