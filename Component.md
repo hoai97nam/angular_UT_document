@@ -63,7 +63,26 @@ Return value of the `getDynamoChange` function was mocked in order to go through
 
 That can be mock by any return type up to developers's purpose.
 
-Normal function can be mocked by using `spyOn`
+Normal function can be mocked by using `spyOn`.
+
+Developers also mock data is declaring return type in `providers`.
+
+    const mockData: Partial<DynamoService>{
+        getDynamoChange: () => of({results: 1, data: [{id: 123}]}));
+    }
+    
+Add to providers from TestBed with async:
+
+    providers: [
+    
+        ...
+        
+        { provide: DynamoService, useValue: mockData }
+    ]
+
+Function `getDynamoChange` will return exactly value that configure in `mockData`.
+
+#### Mock data with different returns
  
  ### 3. Common function, cookie, localStorage
  ### 4. Cover private function
