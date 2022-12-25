@@ -50,8 +50,10 @@ This `tsconfig.spec.json` file
       "files": ["src/test-setup.ts"],
       "include": ["**/*.spec.ts", "**/*.d.ts"]
     }
+    
+- Type with `jest` allow developers to use jest directly as global variable in some use cases
 
-`test-setup.ts` file
+`test-setup.ts` file:
 
         import 'jest-preset-angular';
 Make sure that 3 above files have been created before run unit test
