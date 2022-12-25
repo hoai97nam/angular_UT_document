@@ -17,6 +17,12 @@ This set up seems to be simple requirement for simple service
       
  Of course, when service injected many components or other services even store in Redux flow, developer must add specify data
  
+ Run at least 1 test case like below to make sure that all configurations run right.
+ 
+     it('should be created', () => {
+        expect(service).toBeTruthy();
+      });
+ 
  ### 2. Service methods
  
  This is a method from service:
@@ -35,7 +41,7 @@ Corresponding to above method, there is a test:
       })
     })
     
-DataReturn is return of the method, this could be mock as a constant
+DataReturn is return of the method, this could be mock as a constant.
 
 
  
