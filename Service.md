@@ -3,7 +3,7 @@ Developers have to set up all component, services, providers that were used in s
 ### 1. Start with TestBed
 Service (within this Angular project) always use `httpClient` to execute requests.
 
-Besides providing component, `HttpClientTestingModule` should be declare.
+Besides providing component, `HttpClientTestingModule` should be declared.
 
 This set up seems to be simple requirement for simple service
 
