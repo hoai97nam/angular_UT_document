@@ -27,12 +27,12 @@ This set up seems to be simple requirement for simple service
 Corresponding to above method, there is a test:
 
     it('view method', () => {
-        service.view().subscribe({
-          next: data => expect(data)
-            .withContext('should return Data Info')
-            .toEqual(dataReturn),
-          error: fail
-        })
+      service.view().subscribe({
+        next: data => expect(data)
+          .withContext('should return Data Info')
+          .toEqual(dataReturn),
+        error: fail
+      })
     })
     
 DataReturn is return of the method, this could be mock as a constant
