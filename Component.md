@@ -176,6 +176,8 @@ Wrap up test function between `jest.useFakeTimers()` and `jest.runOnlyPendingTim
       });
 
 ### 6. Router
+Make sure that imports contains `RouterModule.forRoot([])` and `{ provide: APP_BASE_HREF, useValue: '/' }` to cover router
+
     describe('Test backToLogin function', ()=>{
         it('Case single sign on to be true', () => {
           spyOn(component['myPageService'], 'getUserInfo')
@@ -189,6 +191,20 @@ Wrap up test function between `jest.useFakeTimers()` and `jest.runOnlyPendingTim
           expect(component['authen'].clearData).toHaveBeenCalled();
         });
     });
+#### Special case
+When `.ts`  has a statement to check `router.url`
+This is solution:
+
+     RouterTestingModule.withRoutes([
+      { path: 'login', component: TermsOfServiceComponent },
+     ]),
+
+    beforeEach(fakeAsync(() => {
+      const router = TestBed.inject(Router);
+      router.initialNavigation();
+      router.navigateByUrl('login');
+      tick();
+    }))
  
 
 
