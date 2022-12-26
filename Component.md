@@ -108,6 +108,23 @@ This code block mock a response with 2 different return data.
     });
  
 ### 3. Common function, cookie, localStorage
+`navigateToTermOfUse` is common function was imported before.
+
+    getHelpOptionsLang() {
+        this.termOfUseLinkUrl = navigateToTermOfUse(this.cookieService, this.sanitizer);
+    }
+With common function, just import all and mock
+
+    import * as commonFunction from '../../';
+    
+    ...
+    describe('Test getHelpOptionsLang function', ()=>{
+        it('NavigateToTermOfUse and getPrivacyPolicyURL function should be called', ()=>{
+          const spyNavigate = jest.spyOn(commonFunction, 'navigateToTermOfUse');
+          component.getHelpOptionsLang();
+          expect(spyNavigate).toHaveBeenCalled();
+        });
+    });
 ### 4. Cover private function
 ### 5. Interval function
 ### 6. Router
