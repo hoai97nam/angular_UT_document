@@ -108,6 +108,7 @@ This code block mock a response with 2 different return data.
     });
  
 ### 3. Common function, cookie, localStorage
+#### Common function
 `navigateToTermOfUse` is common function was imported before.
 
     getHelpOptionsLang() {
@@ -125,11 +126,69 @@ With common function, just import all and mock
           expect(spyNavigate).toHaveBeenCalled();
         });
     });
+#### Cookie
+Try to pass a statement and expect to be called:
+
+    describe('Test backToLogin function', ()=>{
+        it('Case single sign on to be true', () => {
+          component['cookieService'].set('single_sign_on', 'true');
+          component.backToLogin();
+          expect(component['cookieService'].get).toHaveBeenCalled();
+        });
+    });
+#### LocalStorage
+Set directly localStorge
+
+    describe('Test getHelpOptionsLang function', ()=>{
+        it('Case PersonalUse', () => {
+          const socialAccountType = '5';
+          spyOn(component, 'backToLogin');
+          localStorage.setItem(SOCIAL_ACCOUNT_TYPE, socialAccountType);
+          component.disagree();
+          expect(component.backToLogin).toHaveBeenCalled();
+        });
+    });
 ### 4. Cover private function
+Use `jest.spyOn()`
+
+    describe('メソッドのテスト', () => {
+        it('notebookTitleChanged()の実行', () => {
+          fixture.detectChanges();
+          const spy = jest.spyOn(component, 'privateFunction');
+          component.notebookTitleChanged();
+          expect(spy).toHaveBeenCalledWith(component.notebookTitle);
+        });
+      });
+
+
 ### 5. Interval function
+Wrap up test function between `jest.useFakeTimers()` and `jest.runOnlyPendingTimers()` to implement interval
+
+    describe('Test intervalNotReceive function', () => {
+        it('Test function with success data from dynamo', () => {
+          const setNumberOfUnreceivedDistributions = spyOn(component, 'setNumberOfUnreceivedDistributions');
+          jest.useFakeTimers();
+          component.intervalNotReceive();
+          spyOn(component['dynamoService'], 'getDynamoChange').and.returnValue(of({results: 1, data: [{id: 123}]}));
+          jest.runOnlyPendingTimers();
+          expect(setNumberOfUnreceivedDistributions).toHaveBeenCalled();
+        })
+      });
+
 ### 6. Router
- 
- 
+    describe('Test backToLogin function', ()=>{
+        it('Case single sign on to be true', () => {
+          spyOn(component['myPageService'], 'getUserInfo')
+          spyOn(component['cookieService'], 'get');
+          spyOn(component['authen'], 'clearData');
+          spyOn(component['router'], 'navigateByUrl')
+          component.backToLogin();
+          expect(component['myPageService'].getUserInfo).toHaveBeenCalled();
+          expect(component['cookieService'].get).toHaveBeenCalled();
+          expect(component['router'].navigateByUrl).toHaveBeenCalled();
+          expect(component['authen'].clearData).toHaveBeenCalled();
+        });
+    });
  
 
 
