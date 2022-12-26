@@ -83,11 +83,34 @@ Add to providers from TestBed with async:
 Function `getDynamoChange` will return exactly value that configure in `mockData`.
 
 #### Mock data with different returns
+This code block mock a response with 2 different return data.
+
+    describe('Test setNumberOfUnreceivedDistributions function', () => {
+        const getNotReceivedCountReturn = {
+          results: 1,
+          notReceivedCount: 1
+        };
+        const getNotReceivedCountReturnOtherCase = {
+          results: 1,
+          notReceivedCount: 10,
+          modified: 12235
+        };
+        it('run with notReceivedCount to be 1', () => {
+          const distribute = spyOn(distributionService, 'getNotReceivedCount').and.returnValue(of(getNotReceivedCountReturn))
+          component.setNumberOfUnreceivedDistributions();
+          expect(distribute).toHaveBeenCalled();
+        });
+        it('run with notReceivedCount to be greater than 9 other case', () => {
+          const distribute = spyOn(distributionService, 'getNotReceivedCount').and.returnValue(of(getNotReceivedCountReturnOtherCase))
+          component.setNumberOfUnreceivedDistributions();
+          expect(distribute).toHaveBeenCalled();
+        });
+    });
  
- ### 3. Common function, cookie, localStorage
- ### 4. Cover private function
- ### 5. Interval function
- ### 6. Router
+### 3. Common function, cookie, localStorage
+### 4. Cover private function
+### 5. Interval function
+### 6. Router
  
  
  
