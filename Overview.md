@@ -13,4 +13,5 @@
 ### [3. Component](https://github.com/hoai97nam/angular_UT_document/blob/main/Service.md)
 ### [4. Store]()
 ## Most use cases
+### [Abnormal cases](https://github.com/hoai97nam/angular_UT_document/blob/main/Ab-normal-cases.md)
 
